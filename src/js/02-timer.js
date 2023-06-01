@@ -51,7 +51,7 @@ function pad(value) {
   return String(value).padStart(2, '0');
 }
 
-function timer() {
+function timer(timerId) {
   timerId = setInterval(() => {
     const differenceOfTime = selectedDate - new Date().getTime();
     const { days, hours, minutes, seconds } = convertMs(differenceOfTime);
@@ -60,13 +60,13 @@ function timer() {
     timerDataMinutes.textContent = minutes;
     timerDataSeconds.textContent = seconds;
     if (differenceOfTime < 1000) {
-      clearInterval(timerId);
+      clear();
       dataInput.disabled = false;
     }
   }, 1000);
   dataInput.disabled = true;
   dataInputBtn.disabled = true;
-  // function clear() {
-  //   clearInterval(timerId);
-  // }
+  function clear() {
+    clearInterval(timerId);
+  }
 }
