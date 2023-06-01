@@ -28,6 +28,7 @@ flatpickr('#datetime-picker', {
       Notiflix.Notify.failure('Please choose a date in the future');
     } else {
       dataInputBtn.disabled = false;
+      dataInput.disabled = false;
     }
   },
 });
@@ -38,13 +39,18 @@ function convertMs(ms) {
   const hour = minute * 60;
   const day = hour * 24;
 
-  const days = Math.floor(ms / day);
-  const hours = Math.floor((ms % day) / hour);
-  const minutes = Math.floor(((ms % day) % hour) / minute);
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const days = pad(Math.floor(ms / day));
+  const hours = pad(Math.floor((ms % day) / hour));
+  const minutes = pad(Math.floor(((ms % day) % hour) / minute));
+  const seconds = pad(Math.floor((((ms % day) % hour) % minute) / second));
 
   return { days, hours, minutes, seconds };
 }
+
+function pad(value) {
+  return String(value).padStart(2, '0');
+}
+
 function timer() {
   timerId = setInterval(() => {
     const differenceOfTime = selectedDate - new Date().getTime();
@@ -53,10 +59,12 @@ function timer() {
     timerDataHours.textContent = hours;
     timerDataMinutes.textContent = minutes;
     timerDataSeconds.textContent = seconds;
-    if (differenceOfTime <= 980) {
+    if (differenceOfTime <= 1000) {
       clear();
+      dataInput.disabled = false;
     }
   }, 1000);
+  dataInput.disabled = true;
   dataInputBtn.disabled = true;
   function clear() {
     clearInterval(timerId);
