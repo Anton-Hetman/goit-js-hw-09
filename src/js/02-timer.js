@@ -59,7 +59,7 @@ function timer() {
     timerDataHours.textContent = hours;
     timerDataMinutes.textContent = minutes;
     timerDataSeconds.textContent = seconds;
-    if (differenceOfTime <= 1000) {
+    if (differenceOfTime < 1000) {
       clear();
       dataInput.disabled = false;
     }
