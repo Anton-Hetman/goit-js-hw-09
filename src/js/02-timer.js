@@ -53,10 +53,9 @@ function timer() {
     timerDataHours.textContent = hours;
     timerDataMinutes.textContent = minutes;
     timerDataSeconds.textContent = seconds;
-    if (differenceOfTime <= 999) {
+    if (differenceOfTime <= 980) {
       clear();
     }
-    console.log(differenceOfTime);
   }, 1000);
   dataInputBtn.disabled = true;
   function clear() {
