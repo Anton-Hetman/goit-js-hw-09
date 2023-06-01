@@ -60,13 +60,13 @@ function timer() {
     timerDataMinutes.textContent = minutes;
     timerDataSeconds.textContent = seconds;
     if (differenceOfTime < 1000) {
-      clear();
+      clearInterval(timerId);
       dataInput.disabled = false;
     }
   }, 1000);
   dataInput.disabled = true;
   dataInputBtn.disabled = true;
-  function clear() {
-    clearInterval(timerId);
-  }
+  // function clear() {
+  //   clearInterval(timerId);
+  // }
 }
